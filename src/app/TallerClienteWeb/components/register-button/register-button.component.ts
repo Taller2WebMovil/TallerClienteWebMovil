@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'taller-register-button',
@@ -7,5 +8,8 @@ import { Component } from '@angular/core';
   styleUrl: './register-button.component.css'
 })
 export class RegisterButtonComponent {
-
+  constructor(private router: Router) {}
+    goToRegister() {
+      this.router.navigate(['/register']); // Navega a la página de register
+    }
 }

@@ -12,6 +12,14 @@ export const routes: Routes = [
         pathMatch: 'full',
         loadComponent: () => import('./TallerClienteWeb/pages/login-page/login-page.component').then(m => m.LoginPageComponent)
       },
+      {
+        path: 'register',
+        pathMatch: 'full',
+        loadComponent: () =>
+          import('./TallerClienteWeb/pages/register-page/register-page.component').then(
+            (m) => m.RegisterPageComponent
+          ),
+      },
     {
         path: '**',
         pathMatch: 'full',
