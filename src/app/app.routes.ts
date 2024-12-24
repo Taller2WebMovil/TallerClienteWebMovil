@@ -21,6 +21,13 @@ export const routes: Routes = [
         ),
     },
     {
+      path: 'productos',
+      loadComponent: () =>
+        import('./TallerClienteWeb/pages/products-page/products-page.component').then(
+          (m) => m.ProductsPageComponent
+        )
+    },
+    {
       path: 'main',
       pathMatch: 'full',
       loadComponent: () =>
