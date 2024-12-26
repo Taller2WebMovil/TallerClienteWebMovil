@@ -28,6 +28,34 @@ export const routes: Routes = [
         )
     },
     {
+      path: 'get-productos',
+      loadComponent: () =>
+        import('./TallerClienteWeb/product/pages/get-products-page/get-products-page.component').then(
+          (m) => m.GetProductsPageComponent
+        )
+    },
+    {
+      path: 'post-productos',
+      loadComponent: () =>
+        import('./TallerClienteWeb/product/pages/post-products-page/post-products-page.component').then(
+          (m) => m.PostProductsPageComponent
+        )
+    },
+    {
+      path: 'put-productos',
+      loadComponent: () =>
+        import('./TallerClienteWeb/product/pages/put-products-page/put-products-page.component').then(
+          (m) => m.PutProductsPageComponent
+        )
+    },
+    {
+      path: 'delete-productos',
+      loadComponent: () =>
+        import('./TallerClienteWeb/product/pages/delete-products-page/delete-products-page.component').then(
+          (m) => m.DeleteProductsPageComponent
+        )
+    },
+    {
       path: 'usuarios',
       loadComponent: () =>
         import('./TallerClienteWeb/users/pages/users-page/users-page.component').then(
