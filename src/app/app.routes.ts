@@ -23,8 +23,29 @@ export const routes: Routes = [
     {
       path: 'productos',
       loadComponent: () =>
-        import('./TallerClienteWeb/pages/products-page/products-page.component').then(
+        import('./TallerClienteWeb/product/pages/products-page/products-page.component').then(
           (m) => m.ProductsPageComponent
+        )
+    },
+    {
+      path: 'usuarios',
+      loadComponent: () =>
+        import('./TallerClienteWeb/users/pages/users-page/users-page.component').then(
+          (m) => m.UsersPageComponent
+        )
+    },
+    {
+      path: 'boletas',
+      loadComponent: () =>
+        import('./TallerClienteWeb/bills/pages/bills-page/bills-page.component').then(
+          (m) => m.BillsPageComponent
+        )
+    },
+    {
+      path: 'ventas',
+      loadComponent: () =>
+        import('./TallerClienteWeb/sales/pages/sales-page/sales-page.component').then(
+          (m) => m.SalesPageComponent
         )
     },
     {
