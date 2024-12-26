@@ -35,6 +35,34 @@ export const routes: Routes = [
         )
     },
     {
+      path: 'get-usuarios',
+      loadComponent: () =>
+        import('./TallerClienteWeb/users/pages/get-users-page/get-users-page.component').then(
+          (m) => m.GetUsersPageComponent
+        )
+    },
+    {
+      path: 'post-usuarios',
+      loadComponent: () =>
+        import('./TallerClienteWeb/users/pages/post-users-page/post-users-page.component').then(
+          (m) => m.PostUsersPageComponent
+        )
+    },
+    {
+      path: 'put-usuarios',
+      loadComponent: () =>
+        import('./TallerClienteWeb/users/pages/put-users-page/put-users-page.component').then(
+          (m) => m.PutUsersPageComponent
+        )
+    },
+    {
+      path: 'delete-usuarios',
+      loadComponent: () =>
+        import('./TallerClienteWeb/users/pages/delete-users-page/delete-users-page.component').then(
+          (m) => m.DeleteUsersPageComponent
+        )
+    },
+    {
       path: 'boletas',
       loadComponent: () =>
         import('./TallerClienteWeb/bills/pages/bills-page/bills-page.component').then(

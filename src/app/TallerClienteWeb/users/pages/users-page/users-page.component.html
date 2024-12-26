@@ -1,20 +1,20 @@
-<h3 class="text-3xl font-bold dark:text-white">Obtener Usuarios de la tienda online ventas productos</h3>
+<h3 class="text-3xl font-bold dark:text-white">Usuarios de la tienda online ventas productos</h3>
 <navbar></navbar>
 <div class="flex flex-col items-start space-y-3">
-<button type="button" 
-      class="text-blak
-      ck primarybutton font-semibold rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center mb-3">Obtener usuarios
-</button>
-<button type="button" 
-      class="text-blak
-      ck primarybutton font-semibold rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center mb-3">Agregar usuarios
-</button>
-<button type="button" 
-      class="text-blak
-      ck primarybutton font-semibold rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center mb-3">Modificar usuarios
-</button>
-<button type="button" 
-      class="text-blak
-      ck primarybutton font-semibold rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center mb-3">Eliminar usuarios
-</button>
+  <button type="button" 
+          class="text-black primarybutton font-semibold rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center mb-3"
+          (click)="navigateTo('get-usuarios')">Obtener usuarios
+  </button>
+  <button type="button" 
+          class="text-black primarybutton font-semibold rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center mb-3"
+          (click)="navigateTo('post-usuarios')">Agregar usuarios
+  </button>
+  <button type="button" 
+          class="text-black primarybutton font-semibold rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center mb-3"
+          (click)="navigateTo('put-usuarios')">Modificar usuarios
+  </button>
+  <button type="button" 
+          class="text-black primarybutton font-semibold rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center mb-3"
+          (click)="navigateTo('delete-usuarios')">Eliminar usuarios
+  </button>
 </div>
