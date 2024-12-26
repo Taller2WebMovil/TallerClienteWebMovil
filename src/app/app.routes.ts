@@ -133,6 +133,34 @@ export const routes: Routes = [
         )
     },
     {
+      path: 'get-ventas',
+      loadComponent: () =>
+        import('./TallerClienteWeb/sales/pages/get-sales-page/get-sales-page.component').then(
+          (m) => m.GetSalesPageComponent
+        )
+    },
+    {
+      path: 'post-ventas',
+      loadComponent: () =>
+        import('./TallerClienteWeb/sales/pages/post-sales-page/post-sales-page.component').then(
+          (m) => m.PostSalesPageComponent
+        )
+    },
+    {
+      path: 'put-ventas',
+      loadComponent: () =>
+        import('./TallerClienteWeb/sales/pages/put-sales-page/put-sales-page.component').then(
+          (m) => m.PutSalesPageComponent
+        )
+    },
+    {
+      path: 'delete-ventas',
+      loadComponent: () =>
+        import('./TallerClienteWeb/sales/pages/delete-sales-page/delete-sales-page.component').then(
+          (m) => m.DeleteSalesPageComponent
+        )
+    },
+    {
       path: 'main',
       pathMatch: 'full',
       loadComponent: () =>
