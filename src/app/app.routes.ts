@@ -98,6 +98,34 @@ export const routes: Routes = [
         )
     },
     {
+      path: 'get-boletas',
+      loadComponent: () =>
+        import('./TallerClienteWeb/bills/pages/get-bills-page/get-bills-page.component').then(
+          (m) => m.GetBillsPageComponent
+        )
+    },
+    {
+      path: 'post-boletas',
+      loadComponent: () =>
+        import('./TallerClienteWeb/bills/pages/post-bills-page/post-bills-page.component').then(
+          (m) => m.PostBillsPageComponent
+        )
+    },
+    {
+      path: 'put-boletas',
+      loadComponent: () =>
+        import('./TallerClienteWeb/bills/pages/put-bills-page/put-bills-page.component').then(
+          (m) => m.PutBillsPageComponent
+        )
+    },
+    {
+      path: 'delete-boletas',
+      loadComponent: () =>
+        import('./TallerClienteWeb/bills/pages/delete-bills-page/delete-bills-page.component').then(
+          (m) => m.DeleteBillsPageComponent
+        )
+    },
+    {
       path: 'ventas',
       loadComponent: () =>
         import('./TallerClienteWeb/sales/pages/sales-page/sales-page.component').then(
