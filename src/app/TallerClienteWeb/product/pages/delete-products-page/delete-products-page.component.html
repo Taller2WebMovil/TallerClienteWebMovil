@@ -1,2 +1,12 @@
 <h3 class="text-3xl font-bold dark:text-white">Eliminar productos de la tienda online ventas productos</h3>
 <navbar></navbar>
+<div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
+<div *ngIf="successMessage" class="success">{{ successMessage }}</div>
+
+<ul *ngIf="products.length > 0">
+  <li *ngFor="let product of products">
+    <strong>{{ product.nombreProducto }}</strong>  - {{ product.precio | currency }}
+    <button (click)="deleteProduct(product.idProducto)">Eliminar</button>
+  </li>
+</ul>
+<p *ngIf="products.length === 0">No hay productos disponibles.</p>

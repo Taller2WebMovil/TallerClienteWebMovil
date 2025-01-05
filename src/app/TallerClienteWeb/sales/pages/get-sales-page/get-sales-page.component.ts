@@ -8,5 +8,5 @@ import { NavbarComponent } from '../../../components/_shared/navbar/navbar.compo
   styleUrl: './get-sales-page.component.css'
 })
 export class GetSalesPageComponent {
-
+  
 }

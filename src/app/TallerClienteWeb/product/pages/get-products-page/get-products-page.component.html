@@ -1,2 +1,24 @@
 <h3 class="text-3xl font-bold dark:text-white">Obtener productos de la tienda online ventas productos</h3>
 <navbar></navbar>
+<div class="product-search-container">
+    <h2>Buscar Producto</h2>
+    <form (ngSubmit)="searchProduct()">
+      <label for="productId">ID del Producto:</label>
+      <input type="number" id="productId" [(ngModel)]="productId" name="productId" required />
+      <button type="submit">Buscar</button>
+    </form>
+  
+    <div *ngIf="producto">
+      <h3>Producto Encontrado:</h3>
+      <p><strong>Nombre:</strong> {{ producto.nombreProducto }}</p>
+      <p><strong>Precio:</strong> {{ producto.precio | currency }}</p>
+      <p><strong>Stock:</strong> {{ producto.stockActual }}</p>
+      <p><strong>Tipo:</strong> {{ producto.tipoProducto }}</p>
+      <img [src]="producto.imageUrl" alt="Imagen del producto" width="150" />
+    </div>
+  
+    <div *ngIf="productoNotFound">
+      <p>Producto no encontrado</p>
+    </div>
+</div>
+  

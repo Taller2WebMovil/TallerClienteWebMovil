@@ -1,2 +1,52 @@
 <h3 class="text-3xl font-bold dark:text-white">Agregar productos de la tienda online ventas productos</h3>
 <navbar></navbar>
+<form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label>Nombre</label>
+      <input formControlName="name" type="text" placeholder="Nombre del producto" />
+      <div *ngIf="productForm.get('name')?.invalid && productForm.get('name')?.touched">
+        El nombre es requerido y debe tener entre 3 y 20 caracteres.
+      </div>
+    </div>
+  
+    <div>
+      <label>Tipo</label>
+      <select formControlName="type">
+        <option value="">Seleccione un tipo</option>
+        <option value="Poleras">Poleras</option>
+        <option value="Gorros">Gorros</option>
+        <option value="Juguetería">Juguetería</option>
+        <option value="Alimentación">Alimentación</option>
+        <option value="Libros">Libros</option>
+      </select>
+      <div *ngIf="productForm.get('type')?.invalid && productForm.get('type')?.touched">
+        El tipo es requerido.
+      </div>
+    </div>
+  
+    <div>
+      <label>Stock</label>
+      <input formControlName="stock" type="number" min="1" />
+      <div *ngIf="productForm.get('stock')?.invalid && productForm.get('stock')?.touched">
+        El stock debe ser un número mayor que 0.
+      </div>
+    </div>
+  
+    <div>
+      <label>Precio</label>
+      <input formControlName="price" type="number" step="0.01" min="0.01" max="1000000" />
+      <div *ngIf="productForm.get('price')?.invalid && productForm.get('price')?.touched">
+        El precio debe ser un número entre 0.01 y 1,000,000.
+      </div>
+    </div>
+  
+    <div>
+      <label>Imagen</label>
+      <input formControlName="image" type="file" (change)="onFileChange($event)" />
+      <div *ngIf="productForm.get('image')?.invalid && productForm.get('image')?.touched">
+        La imagen es requerida.
+      </div>
+    </div>
+  
+    <button type="submit" [disabled]="productForm.invalid">Agregar Producto</button>
+</form>

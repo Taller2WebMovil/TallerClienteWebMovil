@@ -1,2 +1,59 @@
 <h3 class="text-3xl font-bold dark:text-white">Agregar Usuarios de la tienda online ventas productos</h3>
 <navbar></navbar>
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label>Nombre</label>
+      <input formControlName="name" type="text" placeholder="Nombre completo" />
+      <div *ngIf="userForm.get('name')?.invalid && userForm.get('name')?.touched">
+        El nombre debe tener entre 3 y 50 caracteres.
+      </div>
+    </div>
+  
+    <div>
+      <label>Género</label>
+      <select formControlName="gender">
+        <option value="">Seleccione su género</option>
+        <option value="masculino">Masculino</option>
+        <option value="femenino">Femenino</option>
+        <option value="prefiero no decirlo">Prefiero no decirlo</option>
+        <option value="otro">Otro</option>
+      </select>
+      <div *ngIf="userForm.get('gender')?.invalid && userForm.get('gender')?.touched">
+        El género es requerido.
+      </div>
+    </div>
+  
+    <div>
+      <label>RUT</label>
+      <input formControlName="rut" type="text" placeholder="12.345.678-9" />
+      <div *ngIf="userForm.get('rut')?.invalid && userForm.get('rut')?.touched">
+        El RUT debe tener el formato correcto (12.345.678-9).
+      </div>
+    </div>
+  
+    <div>
+      <label>Email</label>
+      <input formControlName="email" type="email" placeholder="correo@example.com" />
+      <div *ngIf="userForm.get('email')?.invalid && userForm.get('email')?.touched">
+        Ingrese un correo electrónico válido.
+      </div>
+    </div>
+  
+    <div>
+      <label>Fecha de Nacimiento</label>
+      <input formControlName="birthdate" type="date" />
+      <div *ngIf="userForm.get('birthdate')?.invalid && userForm.get('birthdate')?.touched">
+        La fecha de nacimiento es requerida.
+      </div>
+    </div>
+  
+    <div>
+      <label>Contraseña</label>
+      <input formControlName="password" type="password" placeholder="Mínimo 8 caracteres" />
+      <div *ngIf="userForm.get('password')?.invalid && userForm.get('password')?.touched">
+        La contraseña debe tener al menos 8 caracteres.
+      </div>
+    </div>
+  
+    <button type="submit" [disabled]="userForm.invalid">Registrar Usuario</button>
+  </form>

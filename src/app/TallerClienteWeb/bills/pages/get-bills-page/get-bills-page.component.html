@@ -1,2 +1,30 @@
 <h3 class="text-3xl font-bold dark:text-white">Obtener boletas de la tienda online ventas productos</h3>
 <navbar></navbar>
+<div class="boleta-search-container">
+    <h2>Buscar Boleta</h2>
+    <form (ngSubmit)="searchBoleta()">
+      <label for="boletaId">ID de la Boleta:</label>
+      <input type="number" id="boletaId" [(ngModel)]="boletaId" name="boletaId" required />
+      <button type="submit">Buscar</button>
+    </form>
+  
+    <div *ngIf="boleta">
+      <h3>Boleta Encontrada</h3>
+      <p><strong>Fecha de Compra:</strong> {{ boleta.fechaCompra | date }}</p>
+      <p><strong>Precio Total:</strong> {{ boleta.precioTotal | currency }}</p>
+      <h4>Productos:</h4>
+      <ul>
+        <li *ngFor="let producto of boleta.productos">
+          <p><strong>Nombre:</strong> {{ producto.nombre }}</p>
+          <p><strong>Tipo:</strong> {{ producto.tipo }}</p>
+          <p><strong>Precio Unitario:</strong> {{ producto.precioUnitario | currency }}</p>
+          <p><strong>Cantidad Comprada:</strong> {{ producto.cantidadComprada }}</p>
+          <p><strong>Precio Total:</strong> {{ producto.precioTotal | currency }}</p>
+        </li>
+      </ul>
+    </div>
+  
+    <div *ngIf="boletaNotFound">
+      <p>Boleta no encontrada</p>
+    </div>
+</div>

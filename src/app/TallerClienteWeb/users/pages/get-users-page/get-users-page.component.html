@@ -1,2 +1,16 @@
 <h3 class="text-3xl font-bold dark:text-white">Obtener Usuarios de la tienda online ventas productos</h3>
 <navbar></navbar>
+<div class="search-container">
+    <form (ngSubmit)="searchUser()">
+      <label for="email">Buscar Usuario:</label>
+      <input type="text" id="email" [(ngModel)]="email" name="email" required />
+      <button type="submit">Buscar</button>
+    </form>
+  
+    <div *ngIf="usuarioExist !== null">
+      <p *ngIf="usuarioExist; else notFound">Usuario encontrado</p>
+      <ng-template #notFound>
+        <p>Usuario no encontrado</p>
+      </ng-template>
+    </div>
+</div>
