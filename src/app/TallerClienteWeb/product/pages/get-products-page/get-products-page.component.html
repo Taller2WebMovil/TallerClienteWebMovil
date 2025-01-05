@@ -1,24 +1,80 @@
 <h3 class="text-3xl font-bold dark:text-white">Obtener productos de la tienda online ventas productos</h3>
 <navbar></navbar>
-<div class="product-search-container">
-    <h2>Buscar Producto</h2>
-    <form (ngSubmit)="searchProduct()">
-      <label for="productId">ID del Producto:</label>
-      <input type="number" id="productId" [(ngModel)]="productId" name="productId" required />
-      <button type="submit">Buscar</button>
-    </form>
-  
-    <div *ngIf="producto">
-      <h3>Producto Encontrado:</h3>
-      <p><strong>Nombre:</strong> {{ producto.nombreProducto }}</p>
-      <p><strong>Precio:</strong> {{ producto.precio | currency }}</p>
-      <p><strong>Stock:</strong> {{ producto.stockActual }}</p>
-      <p><strong>Tipo:</strong> {{ producto.tipoProducto }}</p>
-      <img [src]="producto.imageUrl" alt="Imagen del producto" width="150" />
-    </div>
-  
-    <div *ngIf="productoNotFound">
-      <p>Producto no encontrado</p>
-    </div>
+<div class="container mx-auto p-4">
+  <h1 class="text-2xl font-bold mb-4">Lista de Productos</h1>
+
+  <!-- Barra de búsqueda -->
+  <div class="mb-4">
+    <input
+      type="text"
+      [(ngModel)]="searchTerm"
+      (input)="filterProducts()"
+      placeholder="Buscar por nombre"
+      class="w-full border rounded p-2"
+    />
+  </div>
+
+  <!-- Tabla de productos -->
+  <table class="w-full border-collapse border border-gray-300">
+    <thead>
+      <tr class="bg-gray-200">
+        <th class="border border-gray-300 p-2">ID</th>
+        <th class="border border-gray-300 p-2">Nombre</th>
+        <th class="border border-gray-300 p-2">Precio</th>
+        <th class="border border-gray-300 p-2">Stock</th>
+        <th class="border border-gray-300 p-2">Tipo</th>
+        <th class="border border-gray-300 p-2">Imagen</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of displayedProducts">
+        <td class="border border-gray-300 p-2">{{ product.idProducto }}</td>
+        <td class="border border-gray-300 p-2">{{ product.nombreProducto }}</td>
+        <td class="border border-gray-300 p-2">${{ product.precio }}</td>
+        <td class="border border-gray-300 p-2">{{ product.stockActual }}</td>
+        <td class="border border-gray-300 p-2">{{ product.tipoProducto }}</td>
+        <td class="border border-gray-300 p-2">
+          <img
+            [src]="product.imageUrl"
+            alt="Producto"
+            class="w-16 h-16 object-cover"
+          />
+        </td>
+      </tr>
+      <tr *ngIf="displayedProducts.length === 0">
+        <td colspan="6" class="text-center p-4">No se encontraron productos.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Controles de paginación -->
+  <div class="flex justify-center items-center mt-4">
+    <button
+      (click)="goToPage(currentPage - 1)"
+      [disabled]="currentPage === 1"
+      class="px-4 py-2 border rounded mx-1"
+    >
+      Anterior
+    </button>
+
+    <span *ngFor="let page of [].constructor(totalPages); let i = index">
+      <button
+        (click)="goToPage(i + 1)"
+        [class.bg-blue-500]="currentPage === i + 1"
+        class="px-4 py-2 border rounded mx-1"
+      >
+        {{ i + 1 }}
+      </button>
+    </span>
+
+    <button
+      (click)="goToPage(currentPage + 1)"
+      [disabled]="currentPage === totalPages"
+      class="px-4 py-2 border rounded mx-1"
+    >
+      Siguiente
+    </button>
+  </div>
 </div>
+
   

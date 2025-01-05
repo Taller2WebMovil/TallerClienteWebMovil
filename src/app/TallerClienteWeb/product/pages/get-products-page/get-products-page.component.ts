@@ -13,24 +13,51 @@ import { FormsModule } from '@angular/forms';
   providers: [ProductService]
 })
 export class GetProductsPageComponent {
-  productId: number | null = null;
-  producto: Product | null = null;
-  productoNotFound = false;
+  products: Product[] = [];
+  filteredProducts: Product[] = [];
+  displayedProducts: Product[] = [];
+  searchTerm: string = '';
+  currentPage: number = 1;
+  pageSize: number = 5; // Productos por página
+  totalPages: number = 0;
 
   constructor(private productService: ProductService) {}
 
-  searchProduct(): void {
-    if (this.productId !== null) {
-      this.productService.getProductoById(this.productId).subscribe({
-        next: (response) => {
-          this.producto = response;
-          this.productoNotFound = false;
-        },
-        error: () => {
-          this.producto = null;
-          this.productoNotFound = true;
-        },
-      });
+  ngOnInit(): void {
+    this.loadProducts();
+  }
+
+  loadProducts(): void {
+    this.productService.getAllProducts().subscribe((response) => {
+      this.products = response;
+      this.filteredProducts = response;
+      this.calculatePagination();
+    });
+  }
+
+  filterProducts(): void {
+    const term = this.searchTerm.toLowerCase();
+    this.filteredProducts = this.products.filter(product =>
+      product.nombreProducto.toLowerCase().includes(term)
+    );
+    this.calculatePagination();
+  }
+
+  calculatePagination(): void {
+    this.totalPages = Math.ceil(this.filteredProducts.length / this.pageSize);
+    this.updateDisplayedProducts();
+  }
+
+  updateDisplayedProducts(): void {
+    const startIndex = (this.currentPage - 1) * this.pageSize;
+    const endIndex = startIndex + this.pageSize;
+    this.displayedProducts = this.filteredProducts.slice(startIndex, endIndex);
+  }
+
+  goToPage(page: number): void {
+    if (page >= 1 && page <= this.totalPages) {
+      this.currentPage = page;
+      this.updateDisplayedProducts();
     }
   }
 
