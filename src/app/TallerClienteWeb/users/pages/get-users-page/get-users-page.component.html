@@ -1,16 +1,41 @@
 <h3 class="text-3xl font-bold dark:text-white">Obtener Usuarios de la tienda online ventas productos</h3>
 <navbar></navbar>
-<div class="search-container">
-    <form (ngSubmit)="searchUser()">
-      <label for="email">Buscar Usuario:</label>
-      <input type="text" id="email" [(ngModel)]="email" name="email" required />
-      <button type="submit">Buscar</button>
-    </form>
-  
-    <div *ngIf="usuarioExist !== null">
-      <p *ngIf="usuarioExist; else notFound">Usuario encontrado</p>
-      <ng-template #notFound>
-        <p>Usuario no encontrado</p>
-      </ng-template>
-    </div>
+<div class="container mx-auto p-4">
+  <h1 class="text-2xl font-bold mb-4">Usuarios</h1>
+
+  <!-- Barra de búsqueda -->
+  <div class="mb-4">
+    <input
+      type="text"
+      [(ngModel)]="searchTerm"
+      (input)="filterUsers()"
+      placeholder="Buscar por nombre o correo"
+      class="w-full border rounded p-2"
+    />
+  </div>
+
+  <!-- Tabla de usuarios -->
+  <table class="w-full border-collapse border border-gray-300">
+    <thead>
+      <tr class="bg-gray-200">
+        <th class="border border-gray-300 p-2">ID</th>
+        <th class="border border-gray-300 p-2">Nombre</th>
+        <th class="border border-gray-300 p-2">Correo</th>
+        <th class="border border-gray-300 p-2">Género</th>
+        <th class="border border-gray-300 p-2">Fecha de nacimiento</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of filteredUsers">
+        <td class="border border-gray-300 p-2">{{ user.idUsuario }}</td>
+        <td class="border border-gray-300 p-2">{{ user.name }}</td>
+        <td class="border border-gray-300 p-2">{{ user.email }}</td>
+        <td class="border border-gray-300 p-2">{{ user.genero }}</td>
+        <td class="border border-gray-300 p-2">{{ user.birthDate }}</td>
+      </tr>
+      <tr *ngIf="filteredUsers.length === 0">
+        <td colspan="5" class="text-center p-4">No se encontraron usuarios.</td>
+      </tr>
+    </tbody>
+  </table>
 </div>
